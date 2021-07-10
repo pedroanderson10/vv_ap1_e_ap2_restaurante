@@ -11,7 +11,7 @@ public class Pedido {
         super();
     }
 
-    public static void adicionarItemPedido(ItemPedido ItemPedido) {
+    public void adicionarItemPedido(ItemPedido ItemPedido) {
         array.add(ItemPedido);
     }
 
