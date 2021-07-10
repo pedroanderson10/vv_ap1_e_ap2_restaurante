@@ -24,14 +24,15 @@ public class BDProduto {
         array.add(produto);
     }
 
-    public void deletarProduto(int codigoProduto) {
+    public void deletarProduto(int codigoProduto) throws ProdutoNaoEncontradoException {
         for(Produto produto : array) {
             if(produto.getCodigoProduto() == codigoProduto) {
                 array.remove(produto);
-                System.out.println("Produto deletado!!!");
+                System.out.println("\nProduto deletado!!!\n");
                 return;
             }
         }
+        throw new ProdutoNaoEncontradoException(codigoProduto);
     }
 
     public Produto procurarProduto(int codigoProduto) throws ProdutoNaoEncontradoException {
@@ -59,6 +60,10 @@ public class BDProduto {
             System.out.println(produto.toString());
         }
         return null;
+    }
+
+    public int getTamanhoArray(){
+        return array.size();
     }
 
 }

@@ -9,12 +9,21 @@ public class BDPedido {
     private static ArrayList<Pedido> array = new ArrayList<Pedido>();
 
     public BDPedido() {
-        super();
+
     }
 
-    public static void adicionarPedido(Pedido pedido) {
+    public void adicionarPedido(Pedido pedido) {
         array.add(pedido);
     }
+
+    public ArrayList<Pedido> getListaPedidos() throws NullPointerException {
+        if (array != null){
+            return array;
+        }
+        throw new NullPointerException();
+    }
+
+    //Decidi não ir adiante para o sistema não ficar tão grande, mas seria uma lógica como a de BDProdutos
 
 //	public static Pedido ProcurarPedido(int codigoPedido) {
 //		Pedido pedido;
