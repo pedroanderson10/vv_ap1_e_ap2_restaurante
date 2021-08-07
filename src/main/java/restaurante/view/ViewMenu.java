@@ -6,7 +6,7 @@ import restaurante.validation.ProdutoNaoEncontradoException;
 
 public class ViewMenu extends View {
 
-    public void menuCliente(BDProduto bdProduto) {
+    public void menuCliente(BDProduto bdProduto) throws Exception {
 
         instanciarAtributos();
 
@@ -34,7 +34,7 @@ public class ViewMenu extends View {
         }
     }
 
-    public void menuAdministrador(BDProduto bdProduto) throws ProdutoNaoEncontradoException {
+    public void menuAdministrador(BDProduto bdProduto) throws Exception {
 
         instanciarAtributos();
 
@@ -54,7 +54,8 @@ public class ViewMenu extends View {
                 case 1: {
                     Produto produto = controladorProduto.escolherProduto();
                     if(produto == null) break;
-                    bdProduto.adicionarProduto(produto);
+                    //bdProduto.adicionarProduto(produto);
+                    bdProduto.addProdutos(produto);
                     break;
                 }
                 case 2: {

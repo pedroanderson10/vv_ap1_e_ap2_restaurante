@@ -2,8 +2,10 @@ package restaurante.model;
 
 public class Baiao extends PratoPrincipal {
 
-    public Baiao(int codigoProduto, double valorUnitario) {
+    public Baiao(int codigoProduto, double valorUnitario, String nomeProduto) {
         super(codigoProduto, valorUnitario);
+        this.tipoProduto = "Baião";
+        this.nomeProduto = nomeProduto;
     }
 
     public double obterValorUnitario() {

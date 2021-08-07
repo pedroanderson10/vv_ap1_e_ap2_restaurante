@@ -13,7 +13,7 @@ public class RestauranteApplicationTest {
 
     @Test
     @DisplayName("Verificar se lista de produtos está sendo povoada com os 4 produtos pré-selecionados")
-    public void descobrir_se_lista_produtos_esta_sendo_povoado() throws ProdutoNaoEncontradoException {
+    public void descobrir_se_lista_produtos_esta_sendo_povoado() throws Exception {
         BDProduto bdProduto = new BDProduto();
         bdProduto.povoarArrayProdutos();
 

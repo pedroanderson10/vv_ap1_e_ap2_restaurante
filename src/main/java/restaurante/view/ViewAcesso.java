@@ -5,7 +5,7 @@ import restaurante.validation.ProdutoNaoEncontradoException;
 
 public class ViewAcesso extends View{
 
-    public void decidirTipoAcesso(BDProduto bdProduto) throws ProdutoNaoEncontradoException {
+    public void decidirTipoAcesso(BDProduto bdProduto) throws Exception {
 
         instanciarAtributos();
 

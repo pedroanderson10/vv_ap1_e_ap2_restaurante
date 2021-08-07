@@ -9,11 +9,12 @@ import restaurante.validation.ProdutoNaoEncontradoException;
 
 public class ControladorPedido extends Controlador {
 
-    public void realizarPedido(BDProduto bdProduto){
+    public void realizarPedido(BDProduto bdProduto) throws Exception {
 
         instanciarAtributos();
 
-        bdProduto.listarProdutosDisponiveis();
+        //bdProduto.listarProdutosDisponiveis();
+        bdProduto.listProdutosDisponiveis();
 
         System.out.println("\nMONTE SEU PEDIDO");
         Pedido novoPedido = new Pedido();

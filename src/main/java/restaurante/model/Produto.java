@@ -4,6 +4,8 @@ public abstract class Produto {
 
     protected int codigoProduto;
     protected double valorUnitario;
+    protected String tipoProduto;
+    protected String nomeProduto;
 
     public Produto() {
 
@@ -16,7 +18,7 @@ public abstract class Produto {
     }
 
     public String toString() {
-        return "\nCodigo do Produto = " + codigoProduto + "\nValor Unitario = " + valorUnitario;
+        return "\nCodigo do Produto = " + codigoProduto + "\nValor Unitario = " + valorUnitario + "\nTipo do Produto = " + tipoProduto + " " + nomeProduto ;
     }
 
     abstract public double obterValorUnitario();
@@ -40,4 +42,19 @@ public abstract class Produto {
         this.valorUnitario = valorUnitario;
     }
 
+    public String getTipoProduto() {
+        return tipoProduto;
+    }
+
+    public void setTipoProduto(String tipoProduto) {
+        this.tipoProduto = tipoProduto;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
 }

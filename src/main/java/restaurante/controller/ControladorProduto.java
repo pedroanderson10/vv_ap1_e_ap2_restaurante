@@ -29,8 +29,11 @@ public class ControladorProduto extends Controlador {
                     int cod = scan.nextInt();
                     System.out.println("Insira o valor da unidade");
                     double valor = scan.nextDouble();
+                    scan.nextLine();
+                    System.out.println("Insira o nome do produto");
+                    String nome = scan.nextLine();
 
-                    return new Cerveja(cod, valor);
+                    return new Cerveja(cod, valor, nome);
                 }
                 case 2: {
                     //System.out.println("Insira a marca da cerveja");
@@ -38,8 +41,11 @@ public class ControladorProduto extends Controlador {
                     int cod = scan.nextInt();
                     System.out.println("Insira o valor da unidade");
                     double valor = scan.nextDouble();
+                    scan.nextLine();
+                    System.out.println("Insira o nome do produto");
+                    String nome = scan.nextLine();
 
-                    return new Baiao(cod, valor);
+                    return new Baiao(cod, valor, nome);
                 }
                 case 3: {
                     //System.out.println("Insira a marca da cerveja");
@@ -47,8 +53,11 @@ public class ControladorProduto extends Controlador {
                     int cod = scan.nextInt();
                     System.out.println("Insira o valor da unidade");
                     double valor = scan.nextDouble();
+                    scan.nextLine();
+                    System.out.println("Insira o nome do produto");
+                    String nome = scan.nextLine();
 
-                    return new Linguica(cod, valor);
+                    return new Linguica(cod, valor, nome);
                 }
                 case 4: {
                     //System.out.println("Insira a marca da cerveja");
@@ -56,8 +65,11 @@ public class ControladorProduto extends Controlador {
                     int cod = scan.nextInt();
                     System.out.println("Insira o valor da unidade");
                     double valor = scan.nextDouble();
+                    scan.nextLine();
+                    System.out.println("Insira o nome do produto");
+                    String nome = scan.nextLine();
 
-                    return new Sorvete(cod, valor);
+                    return new Sorvete(cod, valor, nome);
                 }
                 case 0: {
                     end = true;
@@ -83,11 +95,12 @@ public class ControladorProduto extends Controlador {
         bdProduto.alterarDadosProduto(cod, valor);
     }
 
-    public void listarProdutos(BDProduto bdProduto) throws ProdutoNaoEncontradoException {
+    public void listarProdutos(BDProduto bdProduto) throws Exception {
 
         instanciarAtributos();
 
-        bdProduto.listarProdutosDisponiveis();
+//        bdProduto.listarProdutosDisponiveis();
+          bdProduto.listProdutosDisponiveis();
     }
 
     public void deletarProduto(BDProduto bdProduto) throws ProdutoNaoEncontradoException {

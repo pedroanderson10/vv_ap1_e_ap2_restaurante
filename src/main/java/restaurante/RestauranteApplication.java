@@ -17,12 +17,13 @@ public class RestauranteApplication {
     public static void main(String[] args) throws Exception {
 
 
-        connectionJdbc =  new ConnectionJdbc().getConexao();
+        //connectionJdbc =  new ConnectionJdbc().getConexao();
 
         instanciarAtributos();
 
-        bdProduto.povoarArrayProdutos();
+//        bdProduto.povoarArrayProdutos();
         viewAcesso.decidirTipoAcesso(bdProduto);
+
 
     }
 
