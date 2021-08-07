@@ -109,13 +109,65 @@ public class DAOProduto {
     }
 
 
-    public Produto procurarProduto(int codigoProduto) throws ProdutoNaoEncontradoException {
-        for(Produto produto : array) {
-            if(produto.getCodigoProduto() == codigoProduto) {
-                return produto;
+//    public Produto procurarProduto(int codigoProduto) throws ProdutoNaoEncontradoException {
+//        for(Produto produto : array) {
+//            if(produto.getCodigoProduto() == codigoProduto) {
+//                return produto;
+//            }
+//        }
+//        throw new ProdutoNaoEncontradoException(codigoProduto);
+//    }
+
+    public boolean procurarProdutoPorCodigo(int codigoProduto) throws Exception {
+        String sql = "SELECT * FROM produto where codigo_produto = ?;";
+
+        this.connectionJdbc = new ConnectionJdbc().getConexao();
+
+        try {
+            PreparedStatement stmt = connectionJdbc.prepareStatement(sql);
+            stmt.setInt(1, codigoProduto);
+
+            ResultSet rs = stmt.executeQuery();
+
+            Produto produto = null;
+
+            while (rs.next()) {
+                //int dia = String.parseInt(rs.getString("dia"));
+
+                if(codigoProduto == rs.getInt("codigo_produto" )) {
+
+                    int codigoProdutoo = rs.getInt("codigo_produto");
+                    double valor_unitario = rs.getDouble("valor_unitario");
+                    String tipo_produto = rs.getString("tipo_produto");
+                    String nome_produto = rs.getString("nome_produto");
+
+                    if (tipo_produto.equals("Baião")) {
+                        produto = new Baiao(codigoProdutoo, valor_unitario, nome_produto);
+                    } else if (tipo_produto.equals("Cerveja")) {
+                        produto = new Cerveja(codigoProdutoo, valor_unitario, nome_produto);
+                    } else if (tipo_produto.equals("Linguiça")) {
+                        produto = new Linguica(codigoProdutoo, valor_unitario, nome_produto);
+                    } else if (tipo_produto.equals("Sorvete")) {
+                        produto = new Sorvete(codigoProdutoo, valor_unitario, nome_produto);
+                    }
+
+                    break;
+                }
+            }
+            stmt.close();
+
+            System.out.println(produto.toString());
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                this.connectionJdbc.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-        throw new ProdutoNaoEncontradoException(codigoProduto);
+        return false;
     }
 
     public void alterarDadosProduto(int codigoProduto, double valorProduto) throws ProdutoNaoEncontradoException {
@@ -127,6 +179,8 @@ public class DAOProduto {
         }
         throw new ProdutoNaoEncontradoException(codigoProduto);
     }
+
+
 
 //    public String listarProdutosDisponiveis(){
 //        System.out.println("-----PRODUTOS DISPONIVEIS----- ");

@@ -20,7 +20,7 @@ public class ViewMenu extends View {
 
             switch (escolhaUsuario) {
                 case 1: {
-                    controladorPedido.realizarPedido(DAOProduto);
+                    //controladorPedido.realizarPedido(DAOProduto);
                     break;
                 }
                 case 0: {
