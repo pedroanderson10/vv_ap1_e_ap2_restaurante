@@ -1,11 +1,10 @@
 package restaurante.view;
 
-import restaurante.repository.BDProduto;
-import restaurante.validation.ProdutoNaoEncontradoException;
+import restaurante.dao.DAOProduto;
 
 public class ViewAcesso extends View{
 
-    public void decidirTipoAcesso(BDProduto bdProduto) throws Exception {
+    public void decidirTipoAcesso(DAOProduto DAOProduto) throws Exception {
 
         instanciarAtributos();
 
@@ -21,11 +20,11 @@ public class ViewAcesso extends View{
 
             switch (escolhaUsuario){
                 case 1:{
-                    viewMenu.menuAdministrador(bdProduto);
+                    viewMenu.menuAdministrador(DAOProduto);
                     break;
                 }
                 case 2:{
-                    viewMenu.menuCliente(bdProduto);
+                    viewMenu.menuCliente(DAOProduto);
                     break;
                 }
                 case 0:{

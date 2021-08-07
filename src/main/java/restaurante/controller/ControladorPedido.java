@@ -3,18 +3,18 @@ package restaurante.controller;
 import restaurante.model.ItemPedido;
 import restaurante.model.Pedido;
 import restaurante.model.Produto;
-import restaurante.repository.BDPedido;
-import restaurante.repository.BDProduto;
+import restaurante.dao.BDPedido;
+import restaurante.dao.DAOProduto;
 import restaurante.validation.ProdutoNaoEncontradoException;
 
 public class ControladorPedido extends Controlador {
 
-    public void realizarPedido(BDProduto bdProduto) throws Exception {
+    public void realizarPedido(DAOProduto DAOProduto) throws Exception {
 
         instanciarAtributos();
 
         //bdProduto.listarProdutosDisponiveis();
-        bdProduto.listProdutosDisponiveis();
+        DAOProduto.listProdutosDisponiveis();
 
         System.out.println("\nMONTE SEU PEDIDO");
         Pedido novoPedido = new Pedido();
@@ -24,7 +24,7 @@ public class ControladorPedido extends Controlador {
             int codigo = scan.nextInt();
             scan.nextLine();
             try {
-                Produto produto = bdProduto.procurarProduto(codigo);
+                Produto produto = DAOProduto.procurarProduto(codigo);
 
                 System.out.println("Insira a quantidade de itens do produto escolhido : ");
                 int quantidade = scan.nextInt(); scan.nextLine();

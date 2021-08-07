@@ -1,12 +1,11 @@
 package restaurante.view;
 
 import restaurante.model.Produto;
-import restaurante.repository.BDProduto;
-import restaurante.validation.ProdutoNaoEncontradoException;
+import restaurante.dao.DAOProduto;
 
 public class ViewMenu extends View {
 
-    public void menuCliente(BDProduto bdProduto) throws Exception {
+    public void menuCliente(DAOProduto DAOProduto) throws Exception {
 
         instanciarAtributos();
 
@@ -21,7 +20,7 @@ public class ViewMenu extends View {
 
             switch (escolhaUsuario) {
                 case 1: {
-                    controladorPedido.realizarPedido(bdProduto);
+                    controladorPedido.realizarPedido(DAOProduto);
                     break;
                 }
                 case 0: {
@@ -34,7 +33,7 @@ public class ViewMenu extends View {
         }
     }
 
-    public void menuAdministrador(BDProduto bdProduto) throws Exception {
+    public void menuAdministrador(DAOProduto DAOProduto) throws Exception {
 
         instanciarAtributos();
 
@@ -55,19 +54,19 @@ public class ViewMenu extends View {
                     Produto produto = controladorProduto.escolherProduto();
                     if(produto == null) break;
                     //bdProduto.adicionarProduto(produto);
-                    bdProduto.addProdutos(produto);
+                    DAOProduto.addProdutos(produto);
                     break;
                 }
                 case 2: {
-                    controladorProduto.alterarDadosProduto(bdProduto);
+                    controladorProduto.alterarDadosProduto(DAOProduto);
                     break;
                 }
                 case 3: {
-                    controladorProduto.listarProdutos(bdProduto);
+                    controladorProduto.listarProdutos(DAOProduto);
                     break;
                 }
                 case 4: {
-                    controladorProduto.deletarProduto(bdProduto);
+                    controladorProduto.deletarProduto(DAOProduto);
                     break;
                 }
                 case 0: {

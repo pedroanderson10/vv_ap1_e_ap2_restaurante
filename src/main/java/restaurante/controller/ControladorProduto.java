@@ -1,7 +1,7 @@
 package restaurante.controller;
 
 import restaurante.model.*;
-import restaurante.repository.BDProduto;
+import restaurante.dao.DAOProduto;
 import restaurante.validation.ProdutoNaoEncontradoException;
 
 public class ControladorProduto extends Controlador {
@@ -82,7 +82,7 @@ public class ControladorProduto extends Controlador {
         return null;
     }
 
-    public void alterarDadosProduto(BDProduto bdProduto) throws ProdutoNaoEncontradoException {
+    public void alterarDadosProduto(DAOProduto DAOProduto) throws ProdutoNaoEncontradoException {
 
         instanciarAtributos();
 
@@ -92,25 +92,25 @@ public class ControladorProduto extends Controlador {
         System.out.println("Insira o novo valor do produto");
         double valor = scan.nextDouble();
 
-        bdProduto.alterarDadosProduto(cod, valor);
+        DAOProduto.alterarDadosProduto(cod, valor);
     }
 
-    public void listarProdutos(BDProduto bdProduto) throws Exception {
+    public void listarProdutos(DAOProduto DAOProduto) throws Exception {
 
         instanciarAtributos();
 
 //        bdProduto.listarProdutosDisponiveis();
-          bdProduto.listProdutosDisponiveis();
+          DAOProduto.listProdutosDisponiveis();
     }
 
-    public void deletarProduto(BDProduto bdProduto) throws ProdutoNaoEncontradoException {
+    public void deletarProduto(DAOProduto DAOProduto) throws ProdutoNaoEncontradoException {
 
         instanciarAtributos();
 
         System.out.println("Insira o código do produto que deseja excluir");
         int cod = scan.nextInt();
 
-        bdProduto.deletarProduto(cod);
+        DAOProduto.deletarProduto(cod);
     }
 
 }

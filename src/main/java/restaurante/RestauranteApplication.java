@@ -1,34 +1,23 @@
 package restaurante;
 
 
-import restaurante.jdbcConnection.ConnectionJdbc;
-import restaurante.repository.BDProduto;
-import restaurante.validation.ProdutoNaoEncontradoException;
+import restaurante.dao.DAOProduto;
 import restaurante.view.ViewAcesso;
-
-import java.sql.Connection;
 
 public class RestauranteApplication {
 
-    private static BDProduto bdProduto;
+    private static DAOProduto DAOProduto;
     private static ViewAcesso viewAcesso;
-    private static Connection connectionJdbc;
 
     public static void main(String[] args) throws Exception {
 
-
-        //connectionJdbc =  new ConnectionJdbc().getConexao();
-
         instanciarAtributos();
-
-//        bdProduto.povoarArrayProdutos();
-        viewAcesso.decidirTipoAcesso(bdProduto);
-
+        viewAcesso.decidirTipoAcesso(DAOProduto);
 
     }
 
     private static void instanciarAtributos() {
-        bdProduto = new BDProduto();
+        DAOProduto = new DAOProduto();
         viewAcesso = new ViewAcesso();
     }
 

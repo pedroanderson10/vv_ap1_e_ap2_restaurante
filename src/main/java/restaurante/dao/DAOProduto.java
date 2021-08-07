@@ -1,6 +1,5 @@
-package restaurante.repository;
+package restaurante.dao;
 
-import org.postgresql.core.ConnectionFactory;
 import restaurante.jdbcConnection.ConnectionJdbc;
 import restaurante.model.*;
 import restaurante.validation.ProdutoNaoEncontradoException;
@@ -11,21 +10,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BDProduto {
+public class DAOProduto {
 
     private static ArrayList<Produto> array = new ArrayList<Produto>();
     private Connection connectionJdbc;
 
-    public BDProduto() {
+    public DAOProduto() {
         super();
     }
 
     public void povoarArrayProdutos() throws Exception {
-//        adicionarProduto(new Cerveja(1,5));
-//        adicionarProduto(new Baiao(2,10));
-//        adicionarProduto(new Linguica(3,15));
-//        adicionarProduto(new Sorvete(4,20));
-
         addProdutos(new Cerveja(1,5, "Skol"));
         addProdutos(new Baiao(2,10, "De Dois"));
         addProdutos(new Linguica(3,15, "Calabresa"));

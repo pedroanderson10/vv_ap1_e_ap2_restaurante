@@ -1,4 +1,4 @@
-package restaurante.repository;
+package restaurante.dao;
 
 import restaurante.model.Pedido;
 
