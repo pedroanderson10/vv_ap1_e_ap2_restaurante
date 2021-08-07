@@ -1,16 +1,23 @@
 package restaurante;
 
 
+import restaurante.jdbcConnection.ConnectionJdbc;
 import restaurante.repository.BDProduto;
 import restaurante.validation.ProdutoNaoEncontradoException;
 import restaurante.view.ViewAcesso;
+
+import java.sql.Connection;
 
 public class RestauranteApplication {
 
     private static BDProduto bdProduto;
     private static ViewAcesso viewAcesso;
+    private static Connection connectionJdbc;
 
-    public static void main(String[] args) throws ProdutoNaoEncontradoException {
+    public static void main(String[] args) throws Exception {
+
+
+        connectionJdbc =  new ConnectionJdbc().getConexao();
 
         instanciarAtributos();
 
