@@ -103,14 +103,15 @@ public class ControladorProduto extends Controlador {
           DAOProduto.listProdutosDisponiveis();
     }
 
-    public void deletarProduto(DAOProduto DAOProduto) throws ProdutoNaoEncontradoException {
+    public void deletarProduto(DAOProduto DAOProduto) throws Exception {
 
         instanciarAtributos();
 
         System.out.println("Insira o código do produto que deseja excluir");
         int cod = scan.nextInt();
 
-        DAOProduto.deletarProduto(cod);
+//        DAOProduto.deletarProduto(cod);
+        DAOProduto.deletProduto(cod);
     }
 
 }

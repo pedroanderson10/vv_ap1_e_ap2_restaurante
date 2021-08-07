@@ -1,5 +1,6 @@
 package restaurante.dao;
 
+import org.postgresql.core.ConnectionFactory;
 import restaurante.jdbcConnection.ConnectionJdbc;
 import restaurante.model.*;
 import restaurante.validation.ProdutoNaoEncontradoException;
@@ -47,11 +48,13 @@ public class DAOProduto {
             int qtdRowsAffected = stmt.executeUpdate();
             stmt.close();
 
-            if (qtdRowsAffected > 0)
-                return true;
+            if (qtdRowsAffected > 0) return true;
+
             return false;
+
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             try {
                 this.connectionJdbc.close();
@@ -63,16 +66,48 @@ public class DAOProduto {
         return false;
     }
 
-    public void deletarProduto(int codigoProduto) throws ProdutoNaoEncontradoException {
-        for(Produto produto : array) {
-            if(produto.getCodigoProduto() == codigoProduto) {
-                array.remove(produto);
-                System.out.println("\nProduto deletado!!!\n");
-                return;
+//    public void deletarProduto(int codigoProduto) throws ProdutoNaoEncontradoException {
+//        for(Produto produto : array) {
+//            if(produto.getCodigoProduto() == codigoProduto) {
+//                array.remove(produto);
+//                System.out.println("\nProduto deletado!!!\n");
+//                return;
+//            }
+//        }
+//        throw new ProdutoNaoEncontradoException(codigoProduto);
+//    }
+
+    public boolean deletProduto(int codigoProduto) throws Exception, ProdutoNaoEncontradoException {
+        String sql = "DELETE FROM produto WHERE codigo_produto = ? ";
+
+        this.connectionJdbc = new ConnectionJdbc().getConexao();
+
+        try {
+            PreparedStatement stmt = connectionJdbc.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setInt(1, codigoProduto);
+
+            int qtdRowsAffected = stmt.executeUpdate();
+            stmt.close();
+
+            if (qtdRowsAffected > 0) return true;
+
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+
+        }finally {
+            try {
+                this.connectionJdbc.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-        throw new ProdutoNaoEncontradoException(codigoProduto);
+        return false;
     }
+
 
     public Produto procurarProduto(int codigoProduto) throws ProdutoNaoEncontradoException {
         for(Produto produto : array) {
