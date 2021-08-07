@@ -12,6 +12,7 @@ public class RestauranteApplication {
     public static void main(String[] args) throws Exception {
 
         instanciarAtributos();
+        //DAOProduto.povoarArrayProdutos();
         viewAcesso.decidirTipoAcesso(DAOProduto);
 
     }
@@ -20,6 +21,14 @@ public class RestauranteApplication {
         DAOProduto = new DAOProduto();
         viewAcesso = new ViewAcesso();
     }
+
+
+//    create table produto (codigo_produto integer NOT NULL,
+//                          valor_unitario double precision NOT NULL,
+//                          tipo_produto varchar(50) NOT NULL,
+//                          nome_produto varchar(50) NOT NULL,
+//                          UNIQUE(codigo_produto),
+//                          PRIMARY KEY (codigo_produto));
 
 //    	//Teste de exceção
 //		System.out.println("\n[EXTRA] Teste de exceção");

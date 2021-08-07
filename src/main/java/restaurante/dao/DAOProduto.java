@@ -1,6 +1,5 @@
 package restaurante.dao;
 
-import org.postgresql.core.ConnectionFactory;
 import restaurante.jdbcConnection.ConnectionJdbc;
 import restaurante.model.*;
 import restaurante.validation.ProdutoNaoEncontradoException;
@@ -118,18 +117,18 @@ public class DAOProduto {
 //        throw new ProdutoNaoEncontradoException(codigoProduto);
 //    }
 
-    public boolean procurarProdutoPorCodigo(int codigoProduto) throws Exception {
+    public Produto procurarProdutoPorCodigo(int codigoProduto) throws Exception {
         String sql = "SELECT * FROM produto where codigo_produto = ?;";
 
         this.connectionJdbc = new ConnectionJdbc().getConexao();
+
+        Produto produto = null;
 
         try {
             PreparedStatement stmt = connectionJdbc.prepareStatement(sql);
             stmt.setInt(1, codigoProduto);
 
             ResultSet rs = stmt.executeQuery();
-
-            Produto produto = null;
 
             while (rs.next()) {
                 //int dia = String.parseInt(rs.getString("dia"));
@@ -157,6 +156,7 @@ public class DAOProduto {
             stmt.close();
 
             System.out.println(produto.toString());
+            return produto;
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -167,20 +167,51 @@ public class DAOProduto {
                 e.printStackTrace();
             }
         }
-        return false;
+        return produto ;
     }
 
-    public void alterarDadosProduto(int codigoProduto, double valorProduto) throws ProdutoNaoEncontradoException {
-        for(Produto produto : array) {
-            if(produto.getCodigoProduto() == codigoProduto) {
-                produto.setValorUnitario(valorProduto);
-                return;
+//    public void alterarDadosProduto(int codigoProduto, double valorProduto) throws ProdutoNaoEncontradoException {
+//        for(Produto produto : array) {
+//            if(produto.getCodigoProduto() == codigoProduto) {
+//                produto.setValorUnitario(valorProduto);
+//                return;
+//            }
+//        }
+//        throw new ProdutoNaoEncontradoException(codigoProduto);
+//    }
+
+    public boolean alteraValorDoProduto(int codigoProduto, double valorProduto) throws Exception {
+        String sql = "update produto set valor_unitario = ?" + "where codigo_produto = ?";
+        this.connectionJdbc = new ConnectionJdbc().getConexao();
+
+        //Produto produto = procurarProdutoPorCodigo(codigoProduto);
+
+        try{
+            PreparedStatement stmt = connectionJdbc.prepareStatement(sql);
+
+            stmt.setDouble(1, valorProduto);
+            stmt.setInt(2, codigoProduto);
+
+            int qtdRowsAffected = stmt.executeUpdate();
+            stmt.close();
+
+            if (qtdRowsAffected > 0)
+                return true;
+
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+
+        }finally {
+            try {
+                this.connectionJdbc.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-        throw new ProdutoNaoEncontradoException(codigoProduto);
+        return false;
     }
-
-
 
 //    public String listarProdutosDisponiveis(){
 //        System.out.println("-----PRODUTOS DISPONIVEIS----- ");
@@ -191,7 +222,7 @@ public class DAOProduto {
 //    }
 
     public ArrayList<Produto> listProdutosDisponiveis() throws Exception {
-        String sql = "SELECT * FROM produto;";
+        String sql = "SELECT * FROM produto ORDER BY codigo_produto ASC";
         ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
 
         this.connectionJdbc = new ConnectionJdbc().getConexao();

@@ -82,7 +82,7 @@ public class ControladorProduto extends Controlador {
         return null;
     }
 
-    public void alterarDadosProduto(DAOProduto DAOProduto) throws ProdutoNaoEncontradoException {
+    public void alterarDadosProduto(DAOProduto DAOProduto) throws Exception {
 
         instanciarAtributos();
 
@@ -92,7 +92,8 @@ public class ControladorProduto extends Controlador {
         System.out.println("Insira o novo valor do produto");
         double valor = scan.nextDouble();
 
-        DAOProduto.alterarDadosProduto(cod, valor);
+//        DAOProduto.alterarDadosProduto(cod, valor);
+        DAOProduto.alteraValorDoProduto(cod, valor);
     }
 
     public void listarProdutos(DAOProduto DAOProduto) throws Exception {
