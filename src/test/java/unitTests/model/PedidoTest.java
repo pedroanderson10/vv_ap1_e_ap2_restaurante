@@ -3,9 +3,11 @@ package unitTests.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import restaurante.model.*;
-
-import java.util.ArrayList;
+import restaurante.model.pedido.ItemPedido;
+import restaurante.model.pedido.Pedido;
+import restaurante.model.produto.Baiao;
+import restaurante.model.produto.Linguica;
+import restaurante.model.produto.Produto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

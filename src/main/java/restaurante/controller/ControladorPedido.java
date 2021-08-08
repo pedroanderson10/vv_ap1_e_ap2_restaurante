@@ -1,15 +1,15 @@
 //package restaurante.controller;
 //
-//import restaurante.model.ItemPedido;
-//import restaurante.model.Pedido;
-//import restaurante.model.Produto;
+//import restaurante.model.pedido.ItemPedido;
+//import restaurante.model.pedido.Pedido;
+//import restaurante.model.produto.Produto;
 //import restaurante.dao.BDPedido;
 //import restaurante.dao.DAOProduto;
 //import restaurante.validation.ProdutoNaoEncontradoException;
 //
 //public class ControladorPedido extends Controlador {
 //
-//    public void realizarPedido(DAOProduto DAOProduto) throws Exception {
+//    public void realizarPedido(BDProduto BDProduto) throws Exception {
 //
 //        instanciarAtributos();
 //

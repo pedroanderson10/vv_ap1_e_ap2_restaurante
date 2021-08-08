@@ -1,7 +1,7 @@
 package restaurante.controller;
 
 import restaurante.dao.ProdutoDAO;
-import restaurante.model.*;
+import restaurante.model.produto.*;
 
 public class ControladorProduto extends Controlador implements OpcoesProduto {
 

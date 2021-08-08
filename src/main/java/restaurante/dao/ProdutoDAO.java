@@ -1,7 +1,7 @@
 package restaurante.dao;
 
 import restaurante.jdbcConnection.ConnectionJdbc;
-import restaurante.model.*;
+import restaurante.model.produto.*;
 import restaurante.validation.ProdutoNaoEncontradoException;
 
 import java.sql.Connection;

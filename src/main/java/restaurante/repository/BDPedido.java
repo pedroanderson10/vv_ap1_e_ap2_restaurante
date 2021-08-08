@@ -1,6 +1,6 @@
 package restaurante.repository;
 
-import restaurante.model.Pedido;
+import restaurante.model.pedido.Pedido;
 
 import java.util.ArrayList;
 

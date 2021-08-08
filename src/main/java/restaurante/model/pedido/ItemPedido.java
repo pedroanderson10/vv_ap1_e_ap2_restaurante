@@ -1,4 +1,6 @@
-package restaurante.model;
+package restaurante.model.pedido;
+
+import restaurante.model.produto.Produto;
 
 public class ItemPedido {
 
@@ -12,7 +14,7 @@ public class ItemPedido {
     }
 
     public double obterValorItem(Produto produto) {
-        return produto.valorUnitario * quantidade;
+        return produto.getValorUnitario() * quantidade;
     }
 
     public Produto getProduto() {

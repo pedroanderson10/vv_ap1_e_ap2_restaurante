@@ -1,7 +1,6 @@
 package restaurante.view;
 
-import restaurante.model.Produto;
-import restaurante.repository.BDProduto;
+import restaurante.model.produto.Produto;
 
 public class ViewMenu extends View {
 

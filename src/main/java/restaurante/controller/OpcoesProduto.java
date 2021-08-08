@@ -1,6 +1,6 @@
 package restaurante.controller;
 
-import restaurante.model.Produto;
+import restaurante.model.produto.Produto;
 
 public interface OpcoesProduto {
 

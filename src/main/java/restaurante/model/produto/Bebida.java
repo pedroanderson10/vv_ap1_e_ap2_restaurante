@@ -1,4 +1,4 @@
-package restaurante.model;
+package restaurante.model.produto;
 
 public abstract class Bebida extends Produto {
 

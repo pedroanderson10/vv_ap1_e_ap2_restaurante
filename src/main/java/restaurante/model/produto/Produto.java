@@ -1,4 +1,6 @@
-package restaurante.model;
+package restaurante.model.produto;
+
+import restaurante.model.pedido.Pedido;
 
 public abstract class Produto {
 

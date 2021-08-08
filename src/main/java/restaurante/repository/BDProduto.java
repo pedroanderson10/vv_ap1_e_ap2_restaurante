@@ -1,6 +1,6 @@
 package restaurante.repository;
 
-import restaurante.model.*;
+import restaurante.model.produto.*;
 import restaurante.validation.ProdutoNaoEncontradoException;
 import java.util.ArrayList;
 

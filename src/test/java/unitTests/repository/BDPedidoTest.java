@@ -3,10 +3,10 @@ package unitTests.repository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import restaurante.model.ItemPedido;
-import restaurante.model.Pedido;
-import restaurante.model.Produto;
-import restaurante.model.Sorvete;
+import restaurante.model.pedido.ItemPedido;
+import restaurante.model.pedido.Pedido;
+import restaurante.model.produto.Produto;
+import restaurante.model.produto.Sorvete;
 import restaurante.repository.BDPedido;
 
 import java.util.ArrayList;

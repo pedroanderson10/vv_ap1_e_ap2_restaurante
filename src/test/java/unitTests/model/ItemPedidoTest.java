@@ -3,7 +3,10 @@ package unitTests.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import restaurante.model.*;
+import restaurante.model.pedido.ItemPedido;
+import restaurante.model.produto.Baiao;
+import restaurante.model.produto.Produto;
+import restaurante.model.produto.Sorvete;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

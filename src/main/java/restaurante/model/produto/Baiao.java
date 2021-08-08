@@ -1,4 +1,4 @@
-package restaurante.model;
+package restaurante.model.produto;
 
 public class Baiao extends PratoPrincipal {
 

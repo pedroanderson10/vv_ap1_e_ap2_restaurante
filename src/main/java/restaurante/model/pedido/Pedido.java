@@ -1,4 +1,7 @@
-package restaurante.model;
+package restaurante.model.pedido;
+
+import restaurante.model.pedido.ItemPedido;
+import restaurante.model.produto.Produto;
 
 import java.util.ArrayList;
 
