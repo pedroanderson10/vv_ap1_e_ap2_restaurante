@@ -2,9 +2,8 @@ package restaurante.controller;
 
 import restaurante.dao.ProdutoDAO;
 import restaurante.model.*;
-import restaurante.repository.BDProduto;
 
-public class ControladorProduto extends Controlador {
+public class ControladorProduto extends Controlador implements OpcoesProduto {
 
     private ProdutoDAO produtoDAO = new ProdutoDAO();
 
