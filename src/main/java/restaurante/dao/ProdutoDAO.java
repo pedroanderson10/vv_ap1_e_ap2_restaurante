@@ -87,7 +87,7 @@ public class ProdutoDAO {
         return false;
     }
 
-    public Produto procurarProdutoPorCodigo(int codigoProduto) throws Exception {
+    public Produto buscarProdutoPorCodigo(int codigoProduto) throws Exception {
         String sql = "SELECT * FROM produto where codigo_produto = ?;";
 
         this.connectionJdbc = new ConnectionJdbc().getConexao();
@@ -123,9 +123,15 @@ public class ProdutoDAO {
                     break;
                 }
             }
+
             stmt.close();
 
-            System.out.println(produto.toString());
+            if(produto != null){
+                System.out.println(produto.toString());
+            }else{
+                System.out.println("\nProduto não cadastrado, tente novamente !!\n");
+            }
+
             return produto;
 
         } catch (SQLException e) {

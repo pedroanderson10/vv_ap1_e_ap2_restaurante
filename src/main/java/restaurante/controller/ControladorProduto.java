@@ -130,4 +130,14 @@ public class ControladorProduto extends Controlador implements OpcoesProduto {
     }
 
 
+    public void buscarProdutoPorCodigo() throws Exception {
+
+        instanciarAtributos();
+
+        System.out.println("Insira o código do produto que deseja buscar");
+        int cod = scan.nextInt();
+        scan.nextLine();
+
+        produtoDAO.buscarProdutoPorCodigo(cod);
+    }
 }
