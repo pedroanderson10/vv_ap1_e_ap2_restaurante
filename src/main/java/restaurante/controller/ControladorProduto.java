@@ -1,10 +1,12 @@
 package restaurante.controller;
 
+import restaurante.dao.ProdutoDAO;
 import restaurante.model.*;
-import restaurante.dao.DAOProduto;
-import restaurante.validation.ProdutoNaoEncontradoException;
+import restaurante.repository.BDProduto;
 
 public class ControladorProduto extends Controlador {
+
+    private ProdutoDAO produtoDAO = new ProdutoDAO();
 
     public Produto escolherProduto() {
 
@@ -82,37 +84,51 @@ public class ControladorProduto extends Controlador {
         return null;
     }
 
-    public void alterarDadosProduto(DAOProduto DAOProduto) throws Exception {
+    public void adicionarProduto(Produto produto) throws Exception {
+        produtoDAO.addProdutos(produto);
+    }
+
+    public void alterarDadosProduto() throws Exception {
 
         instanciarAtributos();
 
         System.out.println("Insira o código do produto que deseja alterar");
         int cod = scan.nextInt();
+        scan.nextLine();
 
         System.out.println("Insira o novo valor do produto");
         double valor = scan.nextDouble();
+        scan.nextLine();
 
-//        DAOProduto.alterarDadosProduto(cod, valor);
-        DAOProduto.alteraValorDoProduto(cod, valor);
+        produtoDAO.alteraValorDoProduto(cod, valor);
+
+        //DAOProduto.alterarDadosProduto(cod, valor);
+        //BDProduto.alteraValorDoProduto(cod, valor);
     }
 
-    public void listarProdutos(DAOProduto DAOProduto) throws Exception {
+    public void listarProdutos() throws Exception {
 
         instanciarAtributos();
 
-//        bdProduto.listarProdutosDisponiveis();
-          DAOProduto.listProdutosDisponiveis();
+        produtoDAO.listProdutosDisponiveis();
+
+        //bdProduto.listarProdutosDisponiveis();
+        //BDProduto.listProdutosDisponiveis();
     }
 
-    public void deletarProduto(DAOProduto DAOProduto) throws Exception {
+    public void deletarProduto() throws Exception {
 
         instanciarAtributos();
 
         System.out.println("Insira o código do produto que deseja excluir");
         int cod = scan.nextInt();
+        scan.nextLine();
 
-//        DAOProduto.deletarProduto(cod);
-        DAOProduto.deletProduto(cod);
+        produtoDAO.deletProduto(cod);
+
+        //DAOProduto.deletarProduto(cod);
+        //BDProduto.deletProduto(cod);
     }
+
 
 }

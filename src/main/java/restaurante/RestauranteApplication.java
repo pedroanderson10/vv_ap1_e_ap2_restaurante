@@ -1,25 +1,21 @@
 package restaurante;
 
 
-import restaurante.dao.DAOProduto;
+import restaurante.repository.BDProduto;
 import restaurante.view.ViewAcesso;
 
 public class RestauranteApplication {
 
-    private static DAOProduto DAOProduto;
-    private static ViewAcesso viewAcesso;
+    private static BDProduto BDProduto;
+    private static ViewAcesso viewAcesso = new ViewAcesso();
 
     public static void main(String[] args) throws Exception {
 
-        instanciarAtributos();
-        //DAOProduto.povoarArrayProdutos();
-        viewAcesso.decidirTipoAcesso(DAOProduto);
+        //DAOProduto.povoarArrayProdutosDAO();
+        //BDProduto.povoarArrayProdutos();
 
-    }
+        viewAcesso.decidirTipoAcesso();
 
-    private static void instanciarAtributos() {
-        DAOProduto = new DAOProduto();
-        viewAcesso = new ViewAcesso();
     }
 
 

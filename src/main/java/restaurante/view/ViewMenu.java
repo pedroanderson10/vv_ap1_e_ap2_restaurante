@@ -1,11 +1,12 @@
 package restaurante.view;
 
 import restaurante.model.Produto;
-import restaurante.dao.DAOProduto;
+import restaurante.repository.BDProduto;
 
 public class ViewMenu extends View {
 
-    public void menuCliente(DAOProduto DAOProduto) throws Exception {
+
+    public void menuCliente() throws Exception {
 
         instanciarAtributos();
 
@@ -33,7 +34,7 @@ public class ViewMenu extends View {
         }
     }
 
-    public void menuAdministrador(DAOProduto DAOProduto) throws Exception {
+    public void menuAdministrador() throws Exception {
 
         instanciarAtributos();
 
@@ -54,19 +55,19 @@ public class ViewMenu extends View {
                     Produto produto = controladorProduto.escolherProduto();
                     if(produto == null) break;
                     //bdProduto.adicionarProduto(produto);
-                    DAOProduto.addProdutos(produto);
+                    controladorProduto.adicionarProduto(produto);
                     break;
                 }
                 case 2: {
-                    controladorProduto.alterarDadosProduto(DAOProduto);
+                    controladorProduto.alterarDadosProduto();
                     break;
                 }
                 case 3: {
-                    controladorProduto.listarProdutos(DAOProduto);
+                    controladorProduto.listarProdutos();
                     break;
                 }
                 case 4: {
-                    controladorProduto.deletarProduto(DAOProduto);
+                    controladorProduto.deletarProduto();
                     break;
                 }
                 case 0: {
