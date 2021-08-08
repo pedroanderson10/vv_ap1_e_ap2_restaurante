@@ -16,7 +16,8 @@ public class ConnectionJdbc {
     public Connection getConexao() throws Exception {
         if (conexao == null){
             try{
-                System.out.println("Conexao realizada com sucesso!!");
+                //System.out.println("Conexao realizada com sucesso!!");
+                System.out.println("\nAguarde...\n");
                 Class.forName("org.postgresql.Driver");
                 conexao = DriverManager.getConnection(URL_CONEXAO, USUARIO, SENHA);
             } catch (ClassNotFoundException | SQLException ex){

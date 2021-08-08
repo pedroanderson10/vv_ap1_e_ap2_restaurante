@@ -12,7 +12,7 @@ public class ViewMenu extends View {
         while (!end) {
             System.out.println("-------------------------------------");
             System.out.println("---------- Menu do cliente ----------");
-            System.out.println("1 - Realizar Pedido");
+            System.out.println("1 - Realizar Pedido (Fora do ar)");
             System.out.println("0 - Voltar");
             System.out.println("-------------------------------------");
 

@@ -12,7 +12,7 @@ public class ViewAcesso extends View{
             System.out.println("-------------------------------------");
             System.out.println("----- Escolha o tipo de acesso -----");
             System.out.println("1 - Administrador");
-            System.out.println("2 - Cliente");
+            System.out.println("2 - Cliente (Fora do Ar)");
             System.out.println("0 - Sair");
             System.out.println("-------------------------------------");
 
