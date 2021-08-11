@@ -97,7 +97,6 @@ public class ControladorProduto extends Controlador implements OpcoesProduto {
 
         System.out.println("Insira o novo valor do produto");
         double valor = scan.nextDouble();
-        scan.nextLine();
 
         produtoDAO.alteraValorDoProduto(cod, valor);
 
@@ -121,7 +120,6 @@ public class ControladorProduto extends Controlador implements OpcoesProduto {
 
         System.out.println("Insira o código do produto que deseja excluir");
         int cod = scan.nextInt();
-        scan.nextLine();
 
         produtoDAO.deletProduto(cod);
 

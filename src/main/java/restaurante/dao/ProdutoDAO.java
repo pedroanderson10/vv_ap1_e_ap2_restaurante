@@ -84,7 +84,8 @@ public class ProdutoDAO {
                 e.printStackTrace();
             }
         }
-        return false;
+
+        throw new ProdutoNaoEncontradoException(codigoProduto);
     }
 
     public Produto buscarProdutoPorCodigo(int codigoProduto) throws Exception {
