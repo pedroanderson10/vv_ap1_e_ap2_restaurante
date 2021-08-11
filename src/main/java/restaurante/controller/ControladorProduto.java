@@ -7,8 +7,11 @@ import java.util.ArrayList;
 
 public class ControladorProduto extends Controlador implements OpcoesControladorProduto {
 
-    private ProdutoDAO produtoDAO = new ProdutoDAO();
+    private ProdutoDAO produtoDAO;
 
+    public ControladorProduto(ProdutoDAO produtoDAO){
+        this.produtoDAO = produtoDAO;
+    }
 
     public boolean adicionarProduto(Produto produto) throws Exception {
         return produtoDAO.addProdutos(produto);

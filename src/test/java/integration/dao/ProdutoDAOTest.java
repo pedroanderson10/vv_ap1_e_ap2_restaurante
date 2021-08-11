@@ -1,9 +1,11 @@
 package integration.dao;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import restaurante.dao.ProdutoDAO;
 import restaurante.model.produto.*;
 import restaurante.validation.ProdutoNaoEncontradoException;
@@ -14,10 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProdutoDAOTest {
 
+    @Mock
+    ProdutoDAO produtoDAOMock;
+
+    @BeforeEach
+    public void beforeEach(){
+        MockitoAnnotations.initMocks(this); //Ler anotações do mockito
+    }
+
     @Test
     @DisplayName("Deveria adicionar um produto no banco")
     void adicionarProdutosBanco() throws Exception {
-        ProdutoDAO produtoDAOMock = Mockito.mock(ProdutoDAO.class);
 
         Produto produto = new Cerveja(1, 10, "Skol");
         assertFalse(produtoDAOMock.addProdutos(produto));
@@ -27,14 +36,13 @@ public class ProdutoDAOTest {
     @Test
     @DisplayName("Deveria deletar um produto do banco")
     void deletarProdutoDoBanco() throws Exception {
-        ProdutoDAO produtoDAOMock = Mockito.mock(ProdutoDAO.class);
+
         assertFalse(produtoDAOMock.deletProduto(1));
     }
 
     @Test
     @DisplayName("Deveria buscar um produto por código")
     void buscarProdutoPorCodigo() throws Exception {
-        ProdutoDAO produtoDAOMock = Mockito.mock(ProdutoDAO.class);
 
         ArrayList<Produto> listaProdutos = criarListaProdutos();
         Produto produto = listaProdutos.get(0); // Código desse produto é 1
@@ -51,14 +59,13 @@ public class ProdutoDAOTest {
     @Test
     @DisplayName("Deveria alterar um produto do banco")
     void alterarProdutoDoBanco() throws Exception {
-        ProdutoDAO produtoDAOMock = Mockito.mock(ProdutoDAO.class);
+
         assertFalse(produtoDAOMock.alteraValorDoProduto(1, 45));
     }
 
     @Test
     @DisplayName("Deveria buscar lista de produtos no banco")
     void buscarProdutosBanco() throws Exception {
-        ProdutoDAO produtoDAOMock = Mockito.mock(ProdutoDAO.class);
 
         Mockito.when(produtoDAOMock.listProdutosDisponiveis()).thenReturn(criarListaProdutos());
         ArrayList<Produto> arrayProdutos = produtoDAOMock.listProdutosDisponiveis();
