@@ -3,139 +3,52 @@ package restaurante.controller;
 import restaurante.dao.ProdutoDAO;
 import restaurante.model.produto.*;
 
-public class ControladorProduto extends Controlador implements OpcoesProduto {
+import java.util.ArrayList;
+
+public class ControladorProduto extends Controlador implements OpcoesControladorProduto {
 
     private ProdutoDAO produtoDAO = new ProdutoDAO();
 
-    public Produto escolherProduto() {
+
+    public boolean adicionarProduto(Produto produto) throws Exception {
+        return produtoDAO.addProdutos(produto);
+    }
+
+    public boolean alterarDadosProduto(int codigo, double valor) throws Exception {
 
         instanciarAtributos();
 
-        while (!end) {
-            System.out.println("-----------------------------------------------------");
-            System.out.println("---------- Qual produto deseja adicionar ? ----------");
-            System.out.println("1 - Cerveja");
-            System.out.println("2 - Baiao");
-            System.out.println("3 - Linguiça");
-            System.out.println("4 - Sorvete");
-            System.out.println("0 - Voltar");
-            System.out.println("------------------------------------------------------");
-
-            escolhaUsuario = scan.nextInt();
-
-            switch (escolhaUsuario) {
-                case 1: {
-                    //System.out.println("Insira a marca da cerveja");
-                    System.out.println("Insira o código do produto");
-                    int cod = scan.nextInt();
-                    System.out.println("Insira o valor da unidade");
-                    double valor = scan.nextDouble();
-                    scan.nextLine();
-                    System.out.println("Insira o nome do produto");
-                    String nome = scan.nextLine();
-
-                    return new Cerveja(cod, valor, nome);
-                }
-                case 2: {
-                    //System.out.println("Insira a marca da cerveja");
-                    System.out.println("Insira o código do produto");
-                    int cod = scan.nextInt();
-                    System.out.println("Insira o valor da unidade");
-                    double valor = scan.nextDouble();
-                    scan.nextLine();
-                    System.out.println("Insira o nome do produto");
-                    String nome = scan.nextLine();
-
-                    return new Baiao(cod, valor, nome);
-                }
-                case 3: {
-                    //System.out.println("Insira a marca da cerveja");
-                    System.out.println("Insira o código do produto");
-                    int cod = scan.nextInt();
-                    System.out.println("Insira o valor da unidade");
-                    double valor = scan.nextDouble();
-                    scan.nextLine();
-                    System.out.println("Insira o nome do produto");
-                    String nome = scan.nextLine();
-
-                    return new Linguica(cod, valor, nome);
-                }
-                case 4: {
-                    //System.out.println("Insira a marca da cerveja");
-                    System.out.println("Insira o código do produto");
-                    int cod = scan.nextInt();
-                    System.out.println("Insira o valor da unidade");
-                    double valor = scan.nextDouble();
-                    scan.nextLine();
-                    System.out.println("Insira o nome do produto");
-                    String nome = scan.nextLine();
-
-                    return new Sorvete(cod, valor, nome);
-                }
-                case 0: {
-                    end = true;
-                    break;
-                }
-                default:
-                    System.out.println("Insira uma opção válida");
-            }
-        }
-        return null;
-    }
-
-    public void adicionarProduto(Produto produto) throws Exception {
-        produtoDAO.addProdutos(produto);
-    }
-
-    public void alterarDadosProduto() throws Exception {
-
-        instanciarAtributos();
-
-        System.out.println("Insira o código do produto que deseja alterar");
-        int cod = scan.nextInt();
-        scan.nextLine();
-
-        System.out.println("Insira o novo valor do produto");
-        double valor = scan.nextDouble();
-
-        produtoDAO.alteraValorDoProduto(cod, valor);
+        return produtoDAO.alteraValorDoProduto(codigo, valor);
 
         //DAOProduto.alterarDadosProduto(cod, valor);
         //BDProduto.alteraValorDoProduto(cod, valor);
     }
 
-    public void listarProdutos() throws Exception {
+    public ArrayList<Produto> listarProdutos() throws Exception {
 
         instanciarAtributos();
 
-        produtoDAO.listProdutosDisponiveis();
+        return produtoDAO.listProdutosDisponiveis();
 
         //bdProduto.listarProdutosDisponiveis();
         //BDProduto.listProdutosDisponiveis();
     }
 
-    public void deletarProduto() throws Exception {
+    public boolean deletarProduto(int codigo) throws Exception {
 
         instanciarAtributos();
 
-        System.out.println("Insira o código do produto que deseja excluir");
-        int cod = scan.nextInt();
-
-        produtoDAO.deletProduto(cod);
+        return produtoDAO.deletProduto(codigo);
 
         //DAOProduto.deletarProduto(cod);
         //BDProduto.deletProduto(cod);
     }
 
 
-    public void buscarProdutoPorCodigo() throws Exception {
+    public Produto buscarProdutoPorCodigo(int codigo) throws Exception {
 
         instanciarAtributos();
 
-        System.out.println("Insira o código do produto que deseja buscar");
-        int cod = scan.nextInt();
-        scan.nextLine();
-
-        produtoDAO.buscarProdutoPorCodigo(cod);
+        return produtoDAO.buscarProdutoPorCodigo(codigo);
     }
 }

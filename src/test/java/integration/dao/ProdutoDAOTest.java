@@ -68,7 +68,7 @@ public class ProdutoDAOTest {
         assertEquals("De dois", arrayProdutos.get(1).getNomeProduto());
 
     }
-    
+
     private ArrayList<Produto> criarListaProdutos(){
         ArrayList<Produto> arrayProdutos = new ArrayList<>();
 

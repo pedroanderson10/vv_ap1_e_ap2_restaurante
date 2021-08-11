@@ -43,13 +43,13 @@ public class ProdutoDAO {
             return false;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
 
         } finally {
             try {
                 this.connectionJdbc.close();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
 
