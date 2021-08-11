@@ -39,12 +39,12 @@ public class ControladorProdutoTest {
 
         Mockito.when(produtoDAOMock.addProdutos(produto)).thenReturn(false);
 
-        boolean resultadoAddProduto = true; // Setado com true para provar que abaixo ele recebe o resultado que manipulei pelo mockito
-        assertTrue(resultadoAddProduto);
+        boolean resultadoAddProduto = controladorProduto.adicionarProduto(produto);
 
-        resultadoAddProduto = controladorProduto.adicionarProduto(produto);
+        //Verificar se o método addProdutos do mock foi executado pelo controlador
+        Mockito.verify(produtoDAOMock).addProdutos(produto);
+
         assertFalse(resultadoAddProduto);
-
     }
 
     @Test
@@ -53,10 +53,11 @@ public class ControladorProdutoTest {
 
         Mockito.when(produtoDAOMock.deletProduto(1)).thenReturn(false);
 
-        boolean resultadoDelProduto = true; // Setado com true para provar que abaixo ele recebe o resultado que manipulei pelo mockito
-        assertTrue(resultadoDelProduto);
+        boolean resultadoDelProduto = controladorProduto.deletarProduto(1);
 
-        resultadoDelProduto = controladorProduto.deletarProduto(1);
+        //Verificar se o método deletProduto do mock foi executado pelo controlador
+        Mockito.verify(produtoDAOMock).deletProduto(1);
+
         assertFalse(resultadoDelProduto);
     }
 
@@ -64,18 +65,19 @@ public class ControladorProdutoTest {
     @DisplayName("Deveria buscar um produto por código (Sendo chamado pelo controlador)")
     void buscarProdutoPorCodigo() throws Exception {
 
-        ArrayList<Produto> listaProdutos = criarListaProdutos();
-        Produto produto = listaProdutos.get(0); // Código desse produto é 1
+        Produto produto = new Cerveja(1, 10, "Skol");
 
-        Mockito.when(produtoDAOMock.buscarProdutoPorCodigo(produto.getCodigoProduto())).thenReturn(produto);
+        Mockito.when(produtoDAOMock.buscarProdutoPorCodigo(1)).thenReturn(produto);
 
-        Produto produtoBuscado = null;
-        assertNull(produtoBuscado); // Setado com nulo para provar que abaixo ele recebe o objeto que manipulei pelo mockito
+        Produto produtoBuscado = controladorProduto.buscarProdutoPorCodigo(1);
 
-        produtoBuscado = controladorProduto.buscarProdutoPorCodigo(1);
+        //Verificar se o método buscarProdutoPorCodigo do mock foi executado pelo controlador
+        Mockito.verify(produtoDAOMock).buscarProdutoPorCodigo(1);
+
         assertEquals(1, produtoBuscado.getCodigoProduto());
-        assertEquals("Kibom", produtoBuscado.getNomeProduto());
-        assertEquals(5, produtoBuscado.getValorUnitario());
+        assertEquals("Skol", produtoBuscado.getNomeProduto());
+        assertEquals(10, produtoBuscado.getValorUnitario());
+
     }
 
     @Test
@@ -84,10 +86,11 @@ public class ControladorProdutoTest {
 
         Mockito.when(produtoDAOMock.alteraValorDoProduto(1, 20)).thenReturn(false);
 
-        boolean resultadoAlterarProduto = true; // Setado com true para provar que abaixo ele recebe o resultado que manipulei pelo mockito
-        assertTrue(resultadoAlterarProduto);
+        boolean resultadoAlterarProduto = controladorProduto.alterarDadosProduto(1, 20);
 
-        resultadoAlterarProduto = controladorProduto.alterarDadosProduto(1, 20);
+        //Verificar se o método alterarValorDoProduto do mock foi executado pelo controlador
+        Mockito.verify(produtoDAOMock).alteraValorDoProduto(1, 20);
+
         assertFalse(resultadoAlterarProduto);
     }
 
@@ -97,14 +100,14 @@ public class ControladorProdutoTest {
 
         Mockito.when(produtoDAOMock.listProdutosDisponiveis()).thenReturn(criarListaProdutos());
 
-        ArrayList<Produto> arrayProdutos = null;
-        assertNull(arrayProdutos); // Setado com nulo para provar que abaixo ele recebe os objetos do array que manipulei pelo mockito
+        ArrayList<Produto> arrayProdutos = controladorProduto.listarProdutos();
 
-        arrayProdutos = controladorProduto.listarProdutos();
+        //Verificar se o método listProdutosDisponiveis do mock foi executado pelo controlador
+        Mockito.verify(produtoDAOMock).listProdutosDisponiveis();
+
         assertFalse(arrayProdutos.isEmpty());
         assertEquals("Kibom", arrayProdutos.get(0).getNomeProduto());
         assertEquals("De dois", arrayProdutos.get(1).getNomeProduto());
-
     }
 
     private ArrayList<Produto> criarListaProdutos(){

@@ -85,7 +85,7 @@ public class ProdutoDAO {
             }
         }
 
-        throw new ProdutoNaoEncontradoException(codigoProduto);
+        return false;
     }
 
     public Produto buscarProdutoPorCodigo(int codigoProduto) throws Exception {

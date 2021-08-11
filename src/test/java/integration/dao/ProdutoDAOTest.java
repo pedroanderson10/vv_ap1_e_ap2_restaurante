@@ -28,8 +28,13 @@ public class ProdutoDAOTest {
     @DisplayName("Deveria adicionar um produto no banco")
     void adicionarProdutosBanco() throws Exception {
 
+        boolean resultadoAddProduto = true; // Setado com true para provar que abaixo ele recebe o resultado que manipulei pelo mockito
+        assertTrue(resultadoAddProduto);
+
         Produto produto = new Cerveja(1, 10, "Skol");
-        assertFalse(produtoDAOMock.addProdutos(produto));
+
+        resultadoAddProduto = produtoDAOMock.addProdutos(produto);
+        assertFalse(resultadoAddProduto);
 
     }
 
@@ -37,30 +42,40 @@ public class ProdutoDAOTest {
     @DisplayName("Deveria deletar um produto do banco")
     void deletarProdutoDoBanco() throws Exception {
 
-        assertFalse(produtoDAOMock.deletProduto(1));
+        boolean resultadoDelProduto = true; // Setado com true para provar que abaixo ele recebe o resultado que manipulei pelo mockito
+        assertTrue(resultadoDelProduto);
+
+        resultadoDelProduto = produtoDAOMock.deletProduto(1);
+        assertFalse(resultadoDelProduto);
     }
 
     @Test
     @DisplayName("Deveria buscar um produto por código")
     void buscarProdutoPorCodigo() throws Exception {
 
-        ArrayList<Produto> listaProdutos = criarListaProdutos();
-        Produto produto = listaProdutos.get(0); // Código desse produto é 1
+        Produto produto = new Cerveja(1, 10, "Skol");
 
-        Mockito.when(produtoDAOMock.buscarProdutoPorCodigo(produto.getCodigoProduto())).thenReturn(produto);
+        Mockito.when(produtoDAOMock.buscarProdutoPorCodigo(1)).thenReturn(produto);
 
-        Produto produtoBuscado = produtoDAOMock.buscarProdutoPorCodigo(1);
+        Produto produtoBuscado = null;
+        assertNull(produtoBuscado); // Setado com nulo para provar que abaixo ele recebe o objeto que manipulei pelo mockito
+
+        produtoBuscado = produtoDAOMock.buscarProdutoPorCodigo(1);
 
         assertEquals(1, produtoBuscado.getCodigoProduto());
-        assertEquals("Kibom", produtoBuscado.getNomeProduto());
-        assertEquals(5, produtoBuscado.getValorUnitario());
+        assertEquals("Skol", produtoBuscado.getNomeProduto());
+        assertEquals(10, produtoBuscado.getValorUnitario());
     }
 
     @Test
     @DisplayName("Deveria alterar um produto do banco")
     void alterarProdutoDoBanco() throws Exception {
 
-        assertFalse(produtoDAOMock.alteraValorDoProduto(1, 45));
+        boolean resultadoAlterarProduto = true; // Setado com true para provar que abaixo ele recebe o resultado que manipulei pelo mockito
+        assertTrue(resultadoAlterarProduto);
+
+        resultadoAlterarProduto = produtoDAOMock.alteraValorDoProduto(1, 45);
+        assertFalse(resultadoAlterarProduto);
     }
 
     @Test
@@ -68,7 +83,11 @@ public class ProdutoDAOTest {
     void buscarProdutosBanco() throws Exception {
 
         Mockito.when(produtoDAOMock.listProdutosDisponiveis()).thenReturn(criarListaProdutos());
-        ArrayList<Produto> arrayProdutos = produtoDAOMock.listProdutosDisponiveis();
+
+        ArrayList<Produto> arrayProdutos = null;
+        assertNull(arrayProdutos); // Setado com nulo para provar que abaixo ele recebe os objetos do array que manipulei pelo mockito
+
+        arrayProdutos = produtoDAOMock.listProdutosDisponiveis();
 
         assertFalse(arrayProdutos.isEmpty());
         assertEquals("Kibom", arrayProdutos.get(0).getNomeProduto());
