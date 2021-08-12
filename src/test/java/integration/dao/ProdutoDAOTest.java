@@ -10,6 +10,8 @@ import restaurante.dao.ProdutoDAO;
 import restaurante.model.produto.*;
 import restaurante.validation.ProdutoNaoEncontradoException;
 
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,6 +41,21 @@ public class ProdutoDAOTest {
     }
 
     @Test
+    @DisplayName("Não deveria adicionar um produto no banco, retornando SQLexception")
+    void naoAdicionarProdutosBanco() throws Exception {
+
+        Produto produto = new Cerveja(1, 10, "Skol");
+
+        //Manipular para receber uma SQLexception
+        Mockito.when(produtoDAOMock.addProdutos(Mockito.any())).thenThrow(SQLException.class);
+
+        try {
+            produtoDAOMock.addProdutos(produto);
+        }catch (SQLException e){}
+
+    }
+
+    @Test
     @DisplayName("Deveria deletar um produto do banco")
     void deletarProdutoDoBanco() throws Exception {
 
@@ -47,6 +64,19 @@ public class ProdutoDAOTest {
 
         resultadoDelProduto = produtoDAOMock.deletProduto(1);
         assertFalse(resultadoDelProduto);
+    }
+
+    @Test
+    @DisplayName("Não deveria deletar um produto do banco, retornando SQLexception")
+    void naoDeletarProdutoDoBanco() throws Exception {
+
+        //Manipular para receber uma SQLexception
+        Mockito.when(produtoDAOMock.deletProduto(1)).thenThrow(SQLException.class);
+
+        try {
+            produtoDAOMock.deletProduto(1);
+        }catch (SQLException e){}
+
     }
 
     @Test
@@ -68,6 +98,21 @@ public class ProdutoDAOTest {
     }
 
     @Test
+    @DisplayName("Não deveria retornar um produto por código, retornando SQLexception")
+    void naoBuscarProdutoPorCodigo() throws Exception {
+
+        Produto produto = new Cerveja(1, 10, "Skol");
+
+        //Manipular para receber uma SQLexception
+        Mockito.when(produtoDAOMock.buscarProdutoPorCodigo(1)).thenThrow(SQLException.class);
+
+        try {
+            produtoDAOMock.buscarProdutoPorCodigo(1);
+        }catch (SQLException e){}
+
+    }
+
+    @Test
     @DisplayName("Deveria alterar um produto do banco")
     void alterarProdutoDoBanco() throws Exception {
 
@@ -76,6 +121,19 @@ public class ProdutoDAOTest {
 
         resultadoAlterarProduto = produtoDAOMock.alteraValorDoProduto(1, 45);
         assertFalse(resultadoAlterarProduto);
+    }
+
+    @Test
+    @DisplayName("Não deveria alterar um produto do banco, retornando SQLexception")
+    void naoAlterarProdutoDoBanco() throws Exception {
+
+        //Manipular para receber uma SQLexception
+        Mockito.when(produtoDAOMock.alteraValorDoProduto(1, 45)).thenThrow(SQLException.class);
+
+        try {
+            produtoDAOMock.alteraValorDoProduto(1, 45);
+        }catch (SQLException e){}
+
     }
 
     @Test
@@ -92,6 +150,19 @@ public class ProdutoDAOTest {
         assertFalse(arrayProdutos.isEmpty());
         assertEquals("Kibom", arrayProdutos.get(0).getNomeProduto());
         assertEquals("De dois", arrayProdutos.get(1).getNomeProduto());
+
+    }
+
+    @Test
+    @DisplayName("Não deveria retornar lista de produtos do banco, retornando SQLexception")
+    void naoBuscarProdutosBanco() throws Exception {
+
+        //Manipular para receber uma SQLexception
+        Mockito.when(produtoDAOMock.listProdutosDisponiveis()).thenThrow(SQLException.class);
+
+        try {
+            produtoDAOMock.listProdutosDisponiveis();
+        }catch (SQLException e){}
 
     }
 
