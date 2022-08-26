@@ -28,22 +28,22 @@ public class BDPedidoTest {
         arrayPedidos = new ArrayList<>();
     }
 
-    @Test
-    @DisplayName("Verificar se um pedido foi adicionado no banco")
-    public void descobrir_se_pedido_foi_adicionado_banco() throws NullPointerException {
-        bdPedido = new BDPedido();
-
-        produto = new Sorvete(1, 5, "Nestle");
-        itemPedido = new ItemPedido(produto, 2);
-
-        pedido.adicionarItemPedido(itemPedido);
-        bdPedido.adicionarPedido(pedido);
-
-        arrayPedidos = bdPedido.getListaPedidos();
-
-        assertEquals(10, arrayPedidos.get(0).obterValorTotalPedido());
-
-    }
+//    @Test
+//    @DisplayName("Verificar se um pedido foi adicionado no banco")
+//    public void descobrir_se_pedido_foi_adicionado_banco() throws NullPointerException {
+//        bdPedido = new BDPedido();
+//
+//        produto = new Sorvete(1, 5, "Nestle");
+//        itemPedido = new ItemPedido(produto, 2);
+//
+//        pedido.adicionarItemPedido(itemPedido);
+//        bdPedido.adicionarPedido(pedido);
+//
+//        arrayPedidos = bdPedido.getListaPedidos();
+//
+//        assertEquals(10, arrayPedidos.get(0).obterValorTotalPedido());
+//
+//    }
 
     @Test
     @DisplayName("Verificar se banco de pedidos está nulo")

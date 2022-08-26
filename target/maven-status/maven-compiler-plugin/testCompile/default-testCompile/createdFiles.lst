@@ -1,0 +1,8 @@
+integration\dao\ProdutoDAOTest.class
+integration\controller\ControladorProdutoTest.class
+unitTests\model\ProdutoTest.class
+unitTests\repository\BDPedidoTest.class
+unitTests\model\PedidoTest.class
+RestauranteApplicationTest.class
+unitTests\model\ItemPedidoTest.class
+unitTests\repository\BDProdutoTest.class
